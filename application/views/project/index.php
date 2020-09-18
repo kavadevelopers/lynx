@@ -29,9 +29,7 @@
                                         <th class="text-center">Start Date</th>
                                         <th>Client</th>
                                         <th>Remarks</th>
-                                        <?php if($this->session->userdata('id') == '1'){ ?>
-                                            <th class="text-center">Action</th>
-                                        <?php } ?>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,19 +44,19 @@
                                             <td>
                                                 <?= nl2br($value['remarks']) ?>
                                             </td>
-                                            <?php if($this->session->userdata('id') == '1'){ ?>
-                                                <td class="text-center">
-                                                    <a href="<?= base_url('project/view/').$value['id'] ?>" class="btn btn-success btn-xs" title="View Report">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
+                                            <td class="text-center">
+                                                <a href="<?= base_url('project/view/').$value['id'] ?>" class="btn btn-success btn-xs" title="View Report">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                                <?php if($this->session->userdata('id') == '1'){ ?>
                                                     <a href="<?= base_url('project/edit/').$value['id'] ?>" class="btn btn-primary btn-xs" title="Edit">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
                                                     <a href="<?= base_url('project/delete/').$value['id'] ?>" class="btn btn-danger btn-xs btn-delete" title="Delete">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
-                                                </td>
-                                            <?php } ?>
+                                                <?php } ?>
+                                            </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
