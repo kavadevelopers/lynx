@@ -38,27 +38,40 @@ function _profile()
 	return $CI->db->get_where('user',['id' => $CI->session->userdata('id')])->row_array();	
 }
 
-function sendMail($mail,$otp)
+function daysBeetweenDates($date){
+    $now = time();
+    $your_date = strtotime($date);
+    $datediff = $your_date - $now;
+    return round($datediff / (60 * 60 * 24)) - 1;
+}
+
+function sendMail($mail,$subject,$template)
 {
-	$CI =& get_instance();
-    $config = Array(
-		'protocol' 		=> 'smtp',
-		'smtp_host' 	=> getSetting()['mhost'],
-		'smtp_port' 	=> getSetting()['mport'],
-		'smtp_user' 	=> getSetting()['muser'],
-		'smtp_pass' 	=> getSetting()['mpass'],
-		'mailtype' 		=> 'html',
-		'charset' 		=> 'iso-8859-1',
-		'wordwrap' 		=> TRUE
-	);
-    $CI->load->library('email', $config);
-	$CI->email->set_newline("\r\n");
-  	$CI->email->from(getSetting()['muser']);
-  	$CI->email->to($mail);
-  	$CI->email->subject('OTP');
- 	$CI->email->message('Your OTP For reset password is :- '.$otp);
-  	$CI->email->send();
-  	//echo $CI->email->print_debugger();
+    $CI =& get_instance();
+    $CI->load->library('email');
+    $config = array(
+        'protocol'      => 'smtp',
+        'smtp_host'     => getSetting()['mhost'],
+        'smtp_port'     => getSetting()['mport'],
+        'smtp_user'     => getSetting()['muser'],
+        'smtp_pass'     => getSetting()['mpass'],
+        'mailtype'      => 'html',
+        'charset'       => 'utf-8'
+    );
+    $CI->email->initialize($config);
+    $CI->email->set_mailtype("html");
+    $CI->email->set_newline("\r\n");
+
+    $CI->email->to($mail);
+    $CI->email->from(getSetting()['muser'],getSetting()['project_name']);
+    $CI->email->subject($subject);
+    $CI->email->message($template);
+    if($CI->email->send()){
+        //echo "ok";
+    }else{
+        //echo $CI->email->print_debugger();
+    }
+
 }
 
 function getBase64FromUrl($url)

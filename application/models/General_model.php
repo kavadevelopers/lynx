@@ -13,7 +13,7 @@ class General_model extends CI_Model
 
 	public function get_clients()
 	{
-		return $this->db->get_where('client',['df' => ''])->result_array();
+		return $this->db->order_by('id','desc')->get_where('client',['df' => ''])->result_array();
 	}
 
 	public function get_client($id)
@@ -29,9 +29,9 @@ class General_model extends CI_Model
 	public function get_projects()
 	{
 		if($this->session->userdata('id') == '1'){
-			return $this->db->get_where('project',['df' => ''])->result_array();
+			return $this->db->order_by('id','desc')->get_where('project',['df' => ''])->result_array();
 		}else{
-			return $this->db->get_where('project',['df' => '','client' => $this->session->userdata('client')])->result_array();
+			return $this->db->order_by('id','desc')->get_where('project',['df' => '','client' => $this->session->userdata('client')])->result_array();
 		}
 	}
 

@@ -9,6 +9,12 @@ class Login_auth extends CI_Controller {
 	 	$this->load->model('login_model');  
  	}
 	
+ 	// public function index()
+ 	// {
+ 	// 	sendMail("mehul9921@gmail.com","123456");
+ 	// }
+
+
 	public function login()
 	{
 		
@@ -71,7 +77,7 @@ class Login_auth extends CI_Controller {
 	   			$data['otp'] = mt_rand(100000,999999);
 	   			$this->db->where('id',$id);
 	   			$this->db->update('user',['otp' => $data['otp']]);
-	   			sendMail($user[0]['email'],$data['otp']);
+	   			sendMail($user[0]['email'],'Reset Password',$this->load->view('mail/otp',['otp' => $data['otp']],true));
 	   			$data['page_title']			= 	'Otp';
 	   			$data['id']					= 	$id;
 	   			$data['error']				= 	'';

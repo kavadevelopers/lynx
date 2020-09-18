@@ -29,7 +29,7 @@ class Client extends CI_Controller {
 		$this->form_validation->set_rules('client_name', 'Client Name', 'trim|required');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|callback_uniqueEmail');
-		$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|numeric|min_length[10]|max_length[10]');
+		$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|numeric');
 		$this->form_validation->set_rules('country', 'Country', 'trim|required');
 		$this->form_validation->set_rules('state', 'State', 'trim|required');
 		$this->form_validation->set_rules('city', 'City', 'trim|required');
@@ -68,6 +68,8 @@ class Client extends CI_Controller {
 			];
 			$this->db->insert('client',$data);
 
+			sendMail($this->input->post('email'),'Login information',$this->load->view('mail/login',['name' => $this->input->post('business_name'),'email' => $this->input->post('email'),'pass' => $this->input->post('password')],true));
+
 			$this->session->set_flashdata('msg', 'Client Added');
 	        redirect(base_url('client'));
 		}
@@ -94,7 +96,7 @@ class Client extends CI_Controller {
 		$this->form_validation->set_rules('business_name', 'Business Name', 'trim|required');
 		$this->form_validation->set_rules('client_name', 'Client Name', 'trim|required');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|callback_uniqueEmailEdit');
-		$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|numeric|min_length[10]|max_length[10]');
+		$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|numeric');
 		$this->form_validation->set_rules('country', 'Country', 'trim|required');
 		$this->form_validation->set_rules('state', 'State', 'trim|required');
 		$this->form_validation->set_rules('city', 'City', 'trim|required');
@@ -108,6 +110,11 @@ class Client extends CI_Controller {
 			$this->load->template('client/edit',$data);
 		}
 		else{
+
+			if($this->input->post('password') != ""){
+				$this->db->where('id',$this->input->post('user_id'));
+				$this->db->update('user',['password' => md5($this->input->post('password'))]);
+			}
 
 			$data = [
 				'name'			=> $this->input->post('client_name'),

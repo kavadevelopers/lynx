@@ -20,7 +20,7 @@ class Profile extends CI_Controller {
 
 		$this->form_validation->set_rules('name', 'Name', 'trim|required');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|callback_uniqueEmail');
-		$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|numeric|min_length[10]|max_length[10]');
+		$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|numeric');
 		if ($this->form_validation->run() == FALSE)
 		{
 			$data['page_title']			= 	'Profile';

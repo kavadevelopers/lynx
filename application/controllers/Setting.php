@@ -27,7 +27,7 @@ class Setting extends CI_Controller {
 		$this->form_validation->set_rules('muser', 'Email User', 'trim|required');
 		$this->form_validation->set_rules('mpass', 'Email Password', 'trim|required');
 		$this->form_validation->set_rules('access_token', 'Access Token', 'trim|required');
-		$this->form_validation->set_rules('alert_email', 'Alerts Email', 'trim|required');
+		$this->form_validation->set_rules('alert_email', 'Notification Email', 'trim|required');
 
 		if ($this->form_validation->run() == FALSE)
 		{
