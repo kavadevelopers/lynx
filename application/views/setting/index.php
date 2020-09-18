@@ -30,6 +30,14 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Alerts Email <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" type="text" name="alert_email" placeholder="Alerts Email" value="<?php echo set_value('alert_email',getSetting()['alert_email']); ?>" autocomplete="off" >
+                                            <?php echo form_error('alert_email'); ?>
+                                        </div>
+                                    </div>
+
                                     <h5 style="width: 100%; ">Email Credentials</h5>
 
                                     <div class="col-md-3">
@@ -61,6 +69,16 @@
                                             <label>Email Password <span class="astrick">*</span></label>
                                             <input class="form-control form-control-sm" type="text" name="mpass" placeholder="Email Password" value="<?php echo set_value('mpass',getSetting()['mpass']); ?>" autocomplete="off" >
                                             <?php echo form_error('mpass'); ?>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="width: 100%; ">Facebook Credentials</h5>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Facebook Access Token <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" type="text" name="access_token" placeholder="Facebook Access Token" value="<?php echo set_value('access_token',getSetting()['access_token']); ?>" autocomplete="off" >
+                                            <?php echo form_error('access_token'); ?>
                                         </div>
                                     </div>
 

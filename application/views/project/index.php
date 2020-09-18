@@ -48,6 +48,9 @@
                                             </td>
                                             <?php if($this->session->userdata('id') == '1'){ ?>
                                                 <td class="text-center">
+                                                    <a href="<?= base_url('project/view/').$value['id'] ?>" class="btn btn-success btn-xs" title="View Report">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
                                                     <a href="<?= base_url('project/edit/').$value['id'] ?>" class="btn btn-primary btn-xs" title="Edit">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>

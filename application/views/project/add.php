@@ -29,6 +29,14 @@
 
                                     <div class="col-md-3">
                                         <div class="form-group">
+                                            <label>Ad campaign id <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" type="text" name="add_id" placeholder="Ad campaign id" value="<?php echo set_value('add_id'); ?>" autocomplete="off" >
+                                            <?php echo form_error('add_id'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
                                             <label>Start Date <span class="astrick">*</span></label>
                                             <input class="form-control form-control-sm datepicker" type="text" name="start_date" placeholder="Start Date" value="<?php echo set_value('start_date',date('d-m-Y')); ?>" autocomplete="off" readonly>
                                             <?php echo form_error('start_date'); ?>
@@ -61,7 +69,7 @@
                         </div>
                         <div class="card-footer text-right">
                             <a href="<?= base_url('project') ?>" class="btn btn-danger btn-sm">
-                                <i class="fa fa-arrow-left"></i> Cancel
+                                <i class="fa fa-arrow-left"></i> Back
                             </a>
                             <button type="submit" class="btn btn-success btn-sm">
                                 <i class="fa fa-plus"></i> Add

@@ -25,6 +25,7 @@
                                     <tr>
                                         <th>Business Name</th>
                                         <th>Client Name</th>
+                                        <th class="text-center">Projects</th>
                                         <th>Email</th>
                                         <th class="text-center">Mobile</th>
                                         <th>Address</th>
@@ -36,6 +37,7 @@
                                         <tr>
                                             <td><?= $value['bname'] ?></td>
                                             <td><?= $value['cname'] ?></td>
+                                            <td class="text-center"><?= $this->db->get_where('project',['df' => '','client' => $value['id']])->num_rows(); ?></td>
                                             <td><?= $value['email'] ?></td>
                                             <td class="text-center"><?= $value['mobile'] ?></td>
                                             <td>

@@ -182,7 +182,7 @@ class Client extends CI_Controller {
 		$this->db->select('*');
 		$this->db->where('email',$this->input->post('email'));
 		$this->db->where('df','');
-		$this->db->where('id !=',$this->input->post('id'));
+		$this->db->where('id !=',$this->input->post('user_id'));
 		if($this->db->get('user')->num_rows() > 0){
 			$this->form_validation->set_message(__FUNCTION__, 'This Email Already Exists');
 		    return false;

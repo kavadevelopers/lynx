@@ -105,7 +105,7 @@
                         </div>
                         <div class="card-footer text-right">
                             <a href="<?= base_url('client') ?>" class="btn btn-danger btn-sm">
-                                <i class="fa fa-arrow-left"></i> Cancel
+                                <i class="fa fa-arrow-left"></i> Back
                             </a>
                             <button type="submit" class="btn btn-success btn-sm">
                                 <i class="fa fa-save"></i> Save
